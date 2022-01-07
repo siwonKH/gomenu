@@ -1,7 +1,13 @@
 package gomenu
 
-func New(key string) *string {
-	m := key
+type GoMenu struct {
+	KEY string
+}
+
+func New(key string) *GoMenu {
+	m := GoMenu{
+		KEY: key,
+	}
 	return &m
 }
 
