@@ -2,6 +2,7 @@ package request
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/siwonKH/gomenu/handler"
 	"github.com/siwonKH/gomenu/model"
 	"io/ioutil"
@@ -10,7 +11,7 @@ import (
 
 func SearchMenu(schoolCode string, aptCode string, date string, date2 string, KEY string) (model.NeisMenu, error) {
 	urlIn := "https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json"
-	urlIn += "&ATPT_OFCDC_SC_CODE=" + aptCode + "&SD_SCHUL_CODE=" + schoolCode + "&MLSV_FROM_YMD=" + date + "&MLSV_TO_YMD=" + date2 + "&KEY=" + KEY
+	urlIn += "&KEY=" + KEY + "&ATPT_OFCDC_SC_CODE=" + aptCode + "&SD_SCHUL_CODE=" + schoolCode + "&MLSV_FROM_YMD=" + date + "&MLSV_TO_YMD=" + date2
 
 	var menuData, blank model.NeisMenu
 	resp, err := http.Get(urlIn)
@@ -28,6 +29,9 @@ func SearchMenu(schoolCode string, aptCode string, date string, date2 string, KE
 	}
 	if menuData.MealServiceDietInfo == nil {
 		return blank, handler.HandleErr("(menu)menu not found: " + aptCode + schoolCode)
+	}
+	if menuData.MealServiceDietInfo[0].Head[0].ListTotalCount < 1 {
+		return blank, fmt.Errorf("no school menu")
 	}
 
 	return menuData, nil
