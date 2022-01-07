@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-func searchMenu(schoolCode string, aptCode string, date string, date2 string) (model.Menu, error) {
+func searchMenu(schoolCode string, aptCode string, date string, date2 string, m *GoMenu) (model.Menu, error) {
 	var menuRes, blank model.Menu
-	resp, err := request.SearchMenu(schoolCode, aptCode, date, date2)
+	resp, err := request.SearchMenu(schoolCode, aptCode, date, date2, m.KEY)
 	if err != nil {
 		return blank, err
 	}
@@ -20,34 +20,34 @@ func searchMenu(schoolCode string, aptCode string, date string, date2 string) (m
 	return menuRes, nil
 }
 
-func (m *m) SearchMenu(schoolCode string, aptCode string, date string) (model.Menu, error) {
-	return searchMenu(schoolCode, aptCode, date, m)
+func (m *GoMenu) SearchMenu(schoolCode string, aptCode string, date string) (model.Menu, error) {
+	return searchMenu(schoolCode, aptCode, date, date, m)
 }
 
-func SearchMenuByRange(schoolCode string, aptCode string, date string, date2 string) (model.Menu, error) {
-	return searchMenu(schoolCode, aptCode, date, date2)
+func (m *GoMenu) SearchMenuByRange(schoolCode string, aptCode string, date string, date2 string) (model.Menu, error) {
+	return searchMenu(schoolCode, aptCode, date, date2, m)
 }
 
-func SearchTodayMenu(schoolCode string, aptCode string) (model.Menu, error) {
+func (m *GoMenu) SearchTodayMenu(schoolCode string, aptCode string) (model.Menu, error) {
 	today := time.Now().Format("20060102")
-	return searchMenu(schoolCode, aptCode, today, today)
+	return searchMenu(schoolCode, aptCode, today, today, m)
 }
 
-func SearchNextDayMenu(schoolCode string, aptCode string) (model.Menu, error) {
+func (m *GoMenu) SearchNextDayMenu(schoolCode string, aptCode string) (model.Menu, error) {
 	tomorrow := time.Now().AddDate(0, 0, 1).Format("20060102")
-	return searchMenu(schoolCode, aptCode, tomorrow, tomorrow)
+	return searchMenu(schoolCode, aptCode, tomorrow, tomorrow, m)
 }
 
-func SearchThisMonthMenu(schoolCode string, aptCode string) (model.Menu, error) {
+func (m *GoMenu) SearchThisMonthMenu(schoolCode string, aptCode string) (model.Menu, error) {
 	today := time.Now()
 	startMonth := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, time.Local)
 	endMonth := startMonth.AddDate(0, 1, 0).AddDate(0, 0, -1)
-	return searchMenu(schoolCode, aptCode, startMonth.Format("20060102"), endMonth.Format("20060102"))
+	return searchMenu(schoolCode, aptCode, startMonth.Format("20060102"), endMonth.Format("20060102"), m)
 }
 
-func SearchNextMonthMenu(schoolCode string, aptCode string) (model.Menu, error) {
+func (m *GoMenu) SearchNextMonthMenu(schoolCode string, aptCode string) (model.Menu, error) {
 	today := time.Now().AddDate(0, 1, 0)
 	startMonth := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, time.Local)
 	endMonth := startMonth.AddDate(0, 1, 0).AddDate(0, 0, -1)
-	return searchMenu(schoolCode, aptCode, startMonth.Format("20060102"), endMonth.Format("20060102"))
+	return searchMenu(schoolCode, aptCode, startMonth.Format("20060102"), endMonth.Format("20060102"), m)
 }
