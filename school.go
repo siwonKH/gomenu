@@ -7,11 +7,11 @@ import (
 	"strconv"
 )
 
-func searchSchool(schoolName string, aptCode string, maxResp int) ([]model.School, error) {
+func searchSchool(schoolName string, aptCode string, maxResp int, m *GoMenu) ([]model.School, error) {
 	maxRes := strconv.Itoa(maxResp)
 	var schoolRes, blank []model.School
 
-	resp, err := request.SearchSchool(schoolName, aptCode, maxRes)
+	resp, err := request.SearchSchool(schoolName, aptCode, maxRes, m.KEY)
 	if err != nil {
 		return blank, err
 	}
@@ -22,11 +22,11 @@ func searchSchool(schoolName string, aptCode string, maxResp int) ([]model.Schoo
 	return schoolRes, nil
 }
 
-func SearchSchool(schoolName string, aptCode string, maxResp int) ([]model.School, error) {
-	return searchSchool(schoolName, aptCode, maxResp)
+func (m *GoMenu) SearchSchool(schoolName string, aptCode string, maxResp int) ([]model.School, error) {
+	return searchSchool(schoolName, aptCode, maxResp, m)
 }
 
-func SearchFirstSchool(schoolName string) (model.School, error) {
-	resp, err := searchSchool(schoolName, "", 1)
+func (m *GoMenu) SearchFirstSchool(schoolName string) (model.School, error) {
+	resp, err := searchSchool(schoolName, "", 1, m)
 	return resp[0], err
 }
