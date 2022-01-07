@@ -20,8 +20,8 @@ func searchMenu(schoolCode string, aptCode string, date string, date2 string) (m
 	return menuRes, nil
 }
 
-func SearchMenu(schoolCode string, aptCode string, date string) (model.Menu, error) {
-	return searchMenu(schoolCode, aptCode, date, date)
+func (m *m) SearchMenu(schoolCode string, aptCode string, date string) (model.Menu, error) {
+	return searchMenu(schoolCode, aptCode, date, m)
 }
 
 func SearchMenuByRange(schoolCode string, aptCode string, date string, date2 string) (model.Menu, error) {
