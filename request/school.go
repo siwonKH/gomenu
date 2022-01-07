@@ -2,8 +2,8 @@ package request
 
 import (
 	"encoding/json"
-	"gomenu/handler"
-	"gomenu/model"
+	"github.com/siwonKH/gomenu/handler"
+	"github.com/siwonKH/gomenu/model"
 	"io/ioutil"
 	"net/http"
 	"net/url"

@@ -1,8 +1,8 @@
 package parser
 
 import (
-	"gomenu/handler"
-	"gomenu/model"
+	"github.com/siwonKH/gomenu/handler"
+	"github.com/siwonKH/gomenu/model"
 	"strconv"
 	"strings"
 )

@@ -1,9 +1,9 @@
 package gomenu
 
 import (
-	"gomenu/model"
-	"gomenu/parser"
-	"gomenu/request"
+	"github.com/siwonKH/gomenu/model"
+	"github.com/siwonKH/gomenu/parser"
+	"github.com/siwonKH/gomenu/request"
 	"time"
 )
 

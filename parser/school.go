@@ -1,6 +1,6 @@
 package parser
 
-import "gomenu/model"
+import "github.com/siwonKH/gomenu/model"
 
 func ParseSchool(schoolData model.NeisSchool) ([]model.School, error) {
 	schoolDataList := schoolData.SchoolInfo[1].Row
