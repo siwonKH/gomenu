@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func SearchMenu(schoolCode string, aptCode string, date string, date2 string) (model.NeisMenu, error) {
+func SearchMenu(schoolCode string, aptCode string, date string, date2 string, KEY string) (model.NeisMenu, error) {
 	urlIn := "https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json"
 	urlIn += "&ATPT_OFCDC_SC_CODE=" + aptCode + "&SD_SCHUL_CODE=" + schoolCode + "&MLSV_FROM_YMD=" + date + "&MLSV_TO_YMD=" + date2 + "&KEY=" + KEY
 

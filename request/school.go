@@ -9,7 +9,7 @@ import (
 	"net/url"
 )
 
-func SearchSchool(schoolName string, aptCode string, maxRes string) (model.NeisSchool, error) {
+func SearchSchool(schoolName string, aptCode string, maxRes string, KEY string) (model.NeisSchool, error) {
 	schoolNameUrl := url.QueryEscape(schoolName)
 	urlIn := "https://open.neis.go.kr/hub/schoolInfo?Type=json&pSize=" + maxRes
 	urlIn += "&SCHUL_NM=" + schoolNameUrl + "&ATPT_OFCDC_SC_CODE=" + aptCode + "&KEY=" + KEY
