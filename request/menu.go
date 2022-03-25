@@ -27,7 +27,6 @@ func SearchMenu(schoolCode string, aptCode string, date string, date2 string, KE
 	log.Print(":")
 	log.Println(resp)
 	log.Print(":")
-
 	if err != nil {
 		return blank, handler.HandleErr("(menu)request failed: " + aptCode + schoolCode)
 	}
