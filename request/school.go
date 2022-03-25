@@ -25,6 +25,7 @@ func SearchSchool(schoolName string, aptCode string, maxRes string, KEY string) 
 			return
 		}
 	}(resp.Body)
+
 	if err != nil {
 		return blank, handler.HandleErr("(school)request failed: " + schoolName)
 	}
